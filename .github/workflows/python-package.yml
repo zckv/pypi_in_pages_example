@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.10"]
 
     steps:
     - uses: actions/checkout@v3
@@ -29,6 +29,7 @@ jobs:
         if [ -f pyproject.toml ]; then poetry install -n; fi
     - name: Build package with poetry
       run: |
+        cd example-package
         echo "BUILDING PACKAGE in $(pwd)"
         poetry build
     - name: Release
