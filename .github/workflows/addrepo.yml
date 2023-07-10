@@ -1,0 +1,45 @@
+# This workflow can be dispatched with an API call
+# The call MUST provide:
+# - a package name (example)
+# - a package version (example-1.0.0-py3-none-any.whl)
+# - a download link (http://repo.com/example-1.0.0-py3-none-any.whl)
+
+name: Add Python Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Package Name (ie example)"
+        required: true
+        type: string
+       version:
+        description: "Package Version (ie example-1.0.0-py3-none-any.whl) "
+        required: true
+        type: string
+       link:
+        description: "Package Link (ie http://repo.com/example-1.0.0-py3-none-any.whl)"
+        required: true
+        type: string
+
+jobs:
+  add_new_package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: update local python package index
+        env: 
+          NAME: ${{ inputs.name }}
+          VERSION: ${{ inputs.version }}
+          LINK: ${{ inputs.link }}
+        run:
+          echo "INPUTS: "
+          echo "name: $NAME"
+          echo "version: $VERSION"
+          echo "link: $LINK"
+          python update_packaging_folder.py $NAME $VERSION $LINK
+      - uses: EndBug/add-and-commit@v9     
+        with:
+          message: Added a package to local index
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
