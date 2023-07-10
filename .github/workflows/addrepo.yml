@@ -32,12 +32,7 @@ jobs:
           NAME: ${{ inputs.name }}
           VERSION: ${{ inputs.version }}
           LINK: ${{ inputs.link }}
-        run:
-          echo "INPUTS "
-          echo "name $NAME "
-          echo "version $VERSION "
-          echo "link $LINK"
-          python update_packaging_folder.py $NAME $VERSION $LINK
+        run: python update_packaging_folder.py $NAME $VERSION $LINK
       - uses: EndBug/add-and-commit@v9     
         with:
           message: Added a package to local index
