@@ -6,6 +6,11 @@
 
 name: Add Python Package
 
+permissions:
+  actions: write
+  contents: write
+  deployments: write
+
 on:
   workflow_dispatch:
     inputs:
