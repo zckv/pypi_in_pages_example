@@ -71,8 +71,8 @@ if __name__ == "__main__":
     rp = ROOT_PATH
     new_package = verify_args()
     content = json_content(f"{rp}/content.json", new_package)
-    packages = {key: f"{rp}/{key}/index.html" for key in content.keys()}
+    packages = {key: f"{key}/index.html" for key in content.keys()}
     write_index(f"{rp}/index.html", TOP_INDEX, BOTTOM_INDEX, packages)
     create_dirs(rp, packages.keys())
     for pack in packages.keys():
-        write_index(packages[pack], TOP_INDEX, BOTTOM_INDEX, content[pack])
+        write_index(f"{rp}/{packages[pack]}", TOP_INDEX, BOTTOM_INDEX, content[pack])
