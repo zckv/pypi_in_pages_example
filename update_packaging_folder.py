@@ -2,12 +2,13 @@ import json
 import sys
 import os
 
-TOP_INDEX = """
-<!DOCTYPE html>
+TOP_INDEX = """<!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Python packages on GitHub</title>
         <meta name="description" content="Simple Python packages server on GitHub pages. ">
+        <meta name="pypi:repository-version" content="1.1">
     </head>
     <body>
         <h1>Simple Python packages server on github pages.</h1>
@@ -15,6 +16,14 @@ TOP_INDEX = """
 
 """
 
+TOP_PACK = """<!DOCTYPE html>
+<html>
+    <head>
+        <title>Links for PKGNAME</title>
+        <meta name="pypi:repository-version" content="1.1">
+    </head>
+    <body>
+"""
 # Content structure:
 # content = {
 #   package_name: {
@@ -60,7 +69,7 @@ def write_index(path: str, top: str, bottom: str, content: dict):
     with open(path, mode='w') as f:
         print(top, file=f)
         for package, ref in content.items():
-            print(f'<a href="{ref}">{package}</a><br />', file=f)
+            print(f'\t\t<a href="{ref}">{package}</a><br />', file=f)
         print(bottom, file=f)
 
 
@@ -75,4 +84,6 @@ if __name__ == "__main__":
     write_index(f"{rp}/index.html", TOP_INDEX, BOTTOM_INDEX, packages)
     create_dirs(rp, packages.keys())
     for pack in packages.keys():
-        write_index(f"{rp}/{packages[pack]}", TOP_INDEX, BOTTOM_INDEX, content[pack])
+        top = TOP_PACK
+        top.replace("PKGNAME", packages[pack])
+        write_index(f"{rp}/{packages[pack]}", top, BOTTOM_INDEX, content[pack])
