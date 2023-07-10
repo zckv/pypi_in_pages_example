@@ -50,7 +50,12 @@ def verify_args():
 def json_content(path: str, package: dict):
     with open(path, mode="r") as f:
         content = json.loads(f.read())
-    content.update(package)
+    # Avoid overwriting old entries
+    npn = next(iter(package.keys()))  # New Package Name
+    if npn in content.keys():
+        content[npn].update(package[npn])
+    else:
+        content.update(package)
     with open(path, mode="w") as f:
         print(
             json.dumps(content, sort_keys=False, indent=4),
