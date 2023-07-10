@@ -13,11 +13,11 @@ on:
         description: "Package Name (ie example)"
         required: true
         type: string
-       version:
+      version:
         description: "Package Version (ie example-1.0.0-py3-none-any.whl) "
         required: true
         type: string
-       link:
+      link:
         description: "Package Link (ie http://repo.com/example-1.0.0-py3-none-any.whl)"
         required: true
         type: string
@@ -33,10 +33,10 @@ jobs:
           VERSION: ${{ inputs.version }}
           LINK: ${{ inputs.link }}
         run:
-          echo "INPUTS: "
-          echo "name: $NAME"
-          echo "version: $VERSION"
-          echo "link: $LINK"
+          echo "INPUTS "
+          echo "name $NAME "
+          echo "version $VERSION "
+          echo "link $LINK"
           python update_packaging_folder.py $NAME $VERSION $LINK
       - uses: EndBug/add-and-commit@v9     
         with:
