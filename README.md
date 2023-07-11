@@ -4,6 +4,8 @@ Use github pages to host python packages index. Deploy everything using github a
 Github does not offer a Python Package feature, but it is possible to tweak github pages
 to use it as a simple Python Packages Index following PEP503.
 
+View it here: https://zckv.github.io/pypi_in_pages_example/
+
 ## Pypi in pages
 
 Use "Deploy static content to Pages" workflow from marketplace to deploy a folder
