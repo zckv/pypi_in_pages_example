@@ -8,5 +8,8 @@
     },
     "example-package": {
         "example_package-0.1.0-py3-none-any.whl": "https://github.com/zckv/pypi_in_pages_example/releases/download/v0.1.2/example_package-0.1.0-py3-none-any.whl"
+    },
+    "$NAME": {
+        "$VERSION": "$LINK"
     }
 }
