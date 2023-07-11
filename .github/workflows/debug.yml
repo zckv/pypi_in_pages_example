@@ -1,0 +1,18 @@
+# Debug infos from github actions
+name: Debug informations
+
+on: ["push"]
+
+permissions:
+  actions: read
+  content: read
+  workflow: read
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          REF: ${{ toJSON(github) }}
+        run: echo $REF
+
