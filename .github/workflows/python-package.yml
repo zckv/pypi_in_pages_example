@@ -32,11 +32,13 @@ jobs:
         python -m pip install poetry
         if [ -f pyproject.toml ]; then poetry install -n; fi
     - name: Build package with poetry
+      id: "build"
       run: |
         cd example-package
         echo "BUILDING PACKAGE in $(pwd)"
         poetry build
     - name: Release
+      id: "release"
       uses: softprops/action-gh-release@v1
       with:
         files: example-package/dist/*
@@ -45,8 +47,8 @@ jobs:
       env:
         TOKEN: ${{ secrets.PAT_TOKEN }}
         NAME: example-package 
-        VERSION: ${{ fromJSON(steps.<step-id>.outputs.assets)[0].name }}
-        LINK: ${{ fromJSON(steps.<step-id>.outputs.assets)[0].browser_download_url }}
+        VERSION: ${{ fromJSON(steps.release.outputs.assets)[0].name }}
+        LINK: ${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}
       run: |
         echo "name $NAME"
         echo "version $VERSION"
