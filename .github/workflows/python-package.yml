@@ -41,3 +41,18 @@ jobs:
       with:
         files: example-package/dist/*
         prerelease: True
+    - name: Add to pages index
+      env:
+        TOKEN: ${{ secrets.PAT_TOKEN }}
+        NAME: example-package 
+        VERSION: ${{ fromJSON(steps.<step-id>.outputs.assets)[0].name }}
+        LINK: ${{ fromJSON(steps.<step-id>.outputs.assets)[0].browser_download_url }}
+      run: |
+        echo "name $NAME"
+        echo "version $VERSION"
+        echo "link $LINK"
+        # curl -L -X POST -H "Accept: application/vnd.github+json" \
+        #  -H "Authorization: Bearer $TOKEN"\
+        #  -H "X-GitHub-Api-Version: 2022-11-28" \
+        #  https://api.github.com/repos/zckv/pypi_in_pages_example/actions/workflows/addrepo.yml/dispatches \
+        #  -d '{"ref":"master","inputs":{"name": $NAME,"version": $VERSION,"link": $LINK}}'

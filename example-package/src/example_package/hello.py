@@ -1,3 +1,4 @@
+# /bin/env python3 hello.py
 # src/example_package/hello.py
 
 def main():
