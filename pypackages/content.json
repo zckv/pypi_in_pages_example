@@ -7,7 +7,8 @@
         "six-1.9.0.tar.gz": "https://files.pythonhosted.org/packages/16/64/1dc5e5976b17466fd7d712e59cbe9fb1e18bec153109e5ba3ed6c9102f1a/six-1.9.0.tar.gz#sha256=e24052411fc4fbd1f672635537c3fc2330d9481b18c0317695b46259512c91d5"
     },
     "example-package": {
-        "example_package-0.1.0-py3-none-any.whl": "https://github.com/zckv/pypi_in_pages_example/releases/download/v0.1.2/example_package-0.1.0-py3-none-any.whl"
+        "example_package-0.1.0-py3-none-any.whl": "https://github.com/zckv/pypi_in_pages_example/releases/download/v0.1.2/example_package-0.1.0-py3-none-any.whl",
+        "example_package-1.0.0-py3-none-any.whl": "https://github.com/zckv/pypi_in_pages_example/releases/download/v1.0.0/example_package-1.0.0-py3-none-any.whl"
     },
     "$NAME": {
         "$VERSION": "$LINK"
