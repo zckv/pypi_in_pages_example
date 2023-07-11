@@ -8,7 +8,15 @@ permissions: read-all
 jobs:
   job1:
     runs-on: ubuntu-latest
+    outputs:
+      out1: ${{ steps.step2.outputs.test }}
     steps:
       - env:
           REF: ${{ toJSON(github) }}
         run: echo $REF
+      - id: step2
+        run: echo "test=HELLO" >> $GITHUB_OUTPUT
+      - id: step3
+        env: 
+          TEST: ${{ steps.step2.outputs.test }}
+        run: echo $TEST        
