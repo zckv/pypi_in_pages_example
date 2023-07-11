@@ -3,10 +3,7 @@ name: Debug informations
 
 on: ["push"]
 
-permissions:
-  actions: read
-  content: read
-  workflow: read
+permissions: read-all
 
 jobs:
   job1:
@@ -15,4 +12,3 @@ jobs:
       - env:
           REF: ${{ toJSON(github) }}
         run: echo $REF
-
