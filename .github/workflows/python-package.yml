@@ -9,7 +9,6 @@ on:
   push:
     tags:
       - "v*.*.*"
-  workflow_dispatch:
     
 permissions:
   contents: write
@@ -41,7 +40,6 @@ jobs:
           poetry build
       - name: Release
         id: "release"
-        if: ${{ contains(fromJSON(github.event).ref, "tags") }}
         uses: softprops/action-gh-release@v1
         with:
           files: ${{ env.PKGNAME }}/dist/*
