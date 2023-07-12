@@ -3,24 +3,27 @@ import sys
 import os
 
 TOP_INDEX = """<!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Python packages on GitHub</title>
         <meta name="description" content="Simple Python Packages Index on GitHub pages. ">
         <meta name="pypi:repository-version" content="1.1">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
     </head>
     <body>
         <h1>Simple Python Packages Index on github pages.</h1>
-        <p>Welcome to this simple python packages server.</p>"""
+        <p>Welcome to this simple python packages index.</p>"""
 
 TOP_PACK = """<!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Links for PKGNAME</title>
         <meta name="pypi:repository-version" content="1.1">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
     </head>
     <body>"""
+
 # Content structure:
 # content = {
 #   package_name: {
