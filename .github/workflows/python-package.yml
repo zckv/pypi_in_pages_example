@@ -53,7 +53,6 @@ jobs:
         ASSET: ${{ needs.build.outputs.ASSETS }}
     env: 
       TOKEN: ${{ secrets.PAT_TOKEN }}
-      NAME: ${{ env.PKGNAME }}
       VERSION: ${{ matrix.ASSET.name }}
       LINK: ${{ matrix.ASSET.browser_download_url }}
     steps:
