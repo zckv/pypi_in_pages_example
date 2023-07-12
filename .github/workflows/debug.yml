@@ -47,14 +47,13 @@ jobs:
     needs: [extract_info]
     strategy:
       matrix:
-        VERSION: ${{ fromJSON(needs.extract_info.outputs.out1).assets[*].name }}
-        LINK: ${{ fromJSON(needs.extract_info.outputs.out1).assets[*].browser_download_url }}
+        ASSET: ${{ fromJSON(needs.extract_info.outputs.out1).assets[*] }}
     env: 
       NAME: example_package
+      VERSION: ${{ matrix.ASSET.name }}
+      LINK: ${{ matrix.ASSET.browser_download_url }}
     steps:
       - run: |
           echo NAME = $NAME
           echo VERSION = $VERSION
           echo LINK = $LINK
-  
-    
