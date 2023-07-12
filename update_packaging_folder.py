@@ -39,15 +39,18 @@ BOTTOM_INDEX = """
 
 ROOT_PATH = "./pypackages"
 
+
 def verify_args():
+    """Get arguments from command line"""
     if len(sys.argv) < 4:
-        print("Usage: script.py [name] [version] [url]",file=sys.stderr)
+        print("Usage: script.py [name] [version] [url]", file=sys.stderr)
         exit(2)
 
-    return  {sys.argv[1]: {sys.argv[2]: sys.argv[3]}}
+    return {sys.argv[1]: {sys.argv[2]: sys.argv[3]}}
 
 
 def json_content(path: str, package: dict):
+    """Open {path} where the index information is stored"""
     with open(path, mode="r") as f:
         content = json.loads(f.read())
     # Avoid overwriting old entries
@@ -65,28 +68,31 @@ def json_content(path: str, package: dict):
 
 
 def create_dirs(root_dir: str, packages: list):
+    """Create every package dir if not existant"""
     for d in packages:
         if not os.path.exists(f"{root_dir}/{d}/"):
             os.mkdir(f"{root_dir}/{d}/")
 
 
 def write_index(path: str, top: str, bottom: str, content: dict):
-    with open(path, mode='w') as f:
+    """Write index.html file"""
+    with open(path, mode="w") as f:
         print(top, file=f)
         for package, ref in content.items():
             print(f'\t\t<a href="{ref}">{package}</a><br />', file=f)
         print(bottom, file=f)
 
 
-def create_index_file():
-    pass
-
 if __name__ == "__main__":
     rp = ROOT_PATH
+    # Get new package info
     new_package = verify_args()
+    # Update and get local PyPi info
     content = json_content(f"{rp}/content.json", new_package)
+    # Create and update root index.html
     packages = {key: f"{key}/index.html" for key in content.keys()}
     write_index(f"{rp}/index.html", TOP_INDEX, BOTTOM_INDEX, packages)
+    # Create and update packages index.html
     create_dirs(rp, packages.keys())
     for pack in packages.keys():
         top = TOP_PACK
