@@ -50,7 +50,7 @@ jobs:
     needs: [build]
     strategy:
       matrix:
-        ASSET: ${{ needs.build.outputs.ASSETS }}
+        ASSET: ${{ fromJSON(needs.build.outputs.ASSETS) }}
     env: 
       TOKEN: ${{ secrets.PAT_TOKEN }}
       VERSION: ${{ matrix.ASSET.name }}
