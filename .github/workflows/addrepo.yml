@@ -30,6 +30,7 @@ on:
 jobs:
   add_new_package:
     runs-on: ubuntu-latest
+    concurrency: add_new_package
     steps:
       - uses: actions/checkout@v3
         with:
