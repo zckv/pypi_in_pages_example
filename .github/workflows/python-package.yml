@@ -14,7 +14,7 @@ permissions:
 # THE PYTHON PACKAGE IS BUILT USING POETRY
 # IF YOU WANT TO USE THIS WORKFLOW, CONFIGURE THESE
 env:
-# TODO use variable from somewhere to extract package name in kebab case
+  # TODO use variable from somewhere to extract package name in kebab case
   PKGNAME: example-package
   REPO_URL: https://api.github.com/repos/zckv/pypi_in_pages_example/actions/workflows/addrepo.yml/dispatches
 
@@ -22,7 +22,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      ASSETS: ${{ fromJSON(steps.release.outputs.assets) }}
+      ASSETS: ${{ steps.release.outputs.assets }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.8
