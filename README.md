@@ -33,6 +33,6 @@ On a tag push, the "[Python Package](.github/workflows/python-package.yml)" work
 The workflow build the package, make a github release. Then it use the name, version and browser
 download link of the release asset to deploy it to the Python Package Index.
 
-The built package is not necessarily stored on the Python Package Index repository. The worklows
+The built package is not necessarily stored on the Python Package Index repository. The workflows
 communicate using curl and the github actions API.
 
