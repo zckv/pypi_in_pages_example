@@ -7,14 +7,12 @@ TOP_INDEX = """<!DOCTYPE html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Python packages on GitHub</title>
-        <meta name="description" content="Simple Python packages server on GitHub pages. ">
+        <meta name="description" content="Simple Python Packages Index on GitHub pages. ">
         <meta name="pypi:repository-version" content="1.1">
     </head>
     <body>
-        <h1>Simple Python packages server on github pages.</h1>
-        <p>Welcome to this simple python packages server.</p>
-
-"""
+        <h1>Simple Python Packages Index on github pages.</h1>
+        <p>Welcome to this simple python packages server.</p>"""
 
 TOP_PACK = """<!DOCTYPE html>
 <html>
@@ -22,8 +20,7 @@ TOP_PACK = """<!DOCTYPE html>
         <title>Links for PKGNAME</title>
         <meta name="pypi:repository-version" content="1.1">
     </head>
-    <body>
-"""
+    <body>"""
 # Content structure:
 # content = {
 #   package_name: {
@@ -32,8 +29,7 @@ TOP_PACK = """<!DOCTYPE html>
 #   },
 # }
 
-BOTTOM_INDEX = """
-    </body>
+BOTTOM_INDEX = """\t</body>
 </html>
 """
 
@@ -79,7 +75,7 @@ def write_index(path: str, top: str, bottom: str, content: dict):
     with open(path, mode="w") as f:
         print(top, file=f)
         for package, ref in content.items():
-            print(f'\t\t<a href="{ref}">{package}</a><br />', file=f)
+            print(f'\t\t<a href="{ref}">{package}</a><br/>', file=f)
         print(bottom, file=f)
 
 
@@ -95,6 +91,5 @@ if __name__ == "__main__":
     # Create and update packages index.html
     create_dirs(rp, packages.keys())
     for pack in packages.keys():
-        top = TOP_PACK
-        top.replace("PKGNAME", packages[pack])
+        top = TOP_PACK.replace("PKGNAME", pack)
         write_index(f"{rp}/{packages[pack]}", top, BOTTOM_INDEX, content[pack])
