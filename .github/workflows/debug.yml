@@ -25,7 +25,7 @@ jobs:
     outputs:
       out1: ${{ steps.curl.outputs.release }}
     env: 
-      TOKEN: ${{ PAT_TOKEN }}
+      TOKEN: ${{ secrets.PAT_TOKEN }}
     steps:
       - id: curl
         run: >
